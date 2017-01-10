@@ -251,7 +251,7 @@ class DiscussController extends Controller
     public function store(StoreDiscussRequest $request)
     {
         $user = Auth::user();
-        if ($time = $this->isIntervalLimit($user))
+        if ($time = $this->isIntervalLimit($user->id))
             return redirect()->back()
                 ->withErrors(['msg' => "You need wait more " . (round($time / 60)) . " minutes to create new conversation"]);
         $data = $request->all();
@@ -274,7 +274,7 @@ class DiscussController extends Controller
         $last_created = DB::table('threads')->select(DB::raw('MAX(created_at) as time'))
             ->where('user_id', $user_id)
             ->first();
-        if (!($last_created))
+        if (!($last_created->time))
             return 0;
         if ($time = Carbon::now()->diffInSeconds(new Carbon($last_created->time)) >= $limit_time)
             return 0;
