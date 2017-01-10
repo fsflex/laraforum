@@ -2,10 +2,9 @@
 
 namespace FsFlex\LaraForum\Controllers\Auth;
 
-use FsFlex\LaraForum\Models\Country;
+use FsFlex\LaraForum\Helpers\Helper;
 use FsFlex\LaraForum\Models\Profile;
 use FsFlex\LaraForum\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -51,7 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255|unique:users,name|regex:/^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/',
+            'name' => 'required|max:32|unique:users,name|regex:/^(?=.{4,32}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -84,6 +83,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $countries = Helper::getCountries();
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -91,7 +91,7 @@ class RegisterController extends Controller
         ]);
         $profile = new Profile;
         $profile->user_id = $user->id;
-        $profile->country_id = Country::where('short_name','us')->first()->id;
+        $profile->country_id = $countries->where('short_name','us')->first()->id;
         $profile->save();
         return $user;
     }
