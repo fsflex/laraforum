@@ -73,7 +73,7 @@ class ProfileController extends Controller
     public function edit($user_name)
     {
         Helper::getDiscussTemplateRequire($user,$channels);
-        $userpreview = User::where('name',$user_name)->first;
+        $userpreview = User::where('name',$user_name)->first();
         if (!$user || !$userpreview || $user->id != $userpreview->id)
             abort(401);
         $countries_data = Helper::getCountries();
