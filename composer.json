@@ -1,0 +1,22 @@
+{
+    "name": "fsflex/laraforum",
+    "description": "forum",
+    "type": "project",
+    "require-dev": {
+        "laravelcollective/html": "^5.3",
+        "cviebrock/eloquent-sluggable": "^4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "FsFlex\\LaraForum\\": "src"
+        }
+    },
+    "license": "test",
+    "authors": [
+        {
+            "name": "vhieu",
+            "email": "vhieuictu@gmail.com"
+        }
+    ]
+
+}
