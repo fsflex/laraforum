@@ -1,5 +1,8 @@
 # laraforum
-
+<h2>Require</h2>
+Forum require packages :
+<div class="highlight highlight-source-shell"><pre>https://github.com/cviebrock/eloquent-sluggable</pre></div>
+<div class="highlight highlight-source-shell"><pre>https://laravelcollective.com/docs/5.3/html</pre></div>
 <h2>Installation</h2>
 First, you'll need to install the package via Composer:
 <div class="highlight highlight-source-shell"><pre>$ composer require fsflex/laraforum=dev_master</pre></div>
