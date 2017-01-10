@@ -24,11 +24,7 @@
     <!-- Scripts -->
     @yield('header')
 </head>
-@if($user && !$user->profile)
-    {{(\FsFlex\LaraForum\Helpers\Helper::autoloadUsersProfile() && $user->load('profile'))?'':''}}
-@endif
-<body class="{{isset($user) ? ' signedIn ':''}}profile has-banner"
->
+<body class="{{isset($user) ? ' signedIn ':''}}profile has-banner">
 <div id="app">
     <div id="root" class="'page">
         <nav class="nav is-normal">

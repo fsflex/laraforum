@@ -15,10 +15,7 @@ class ProfileController extends Controller
 
     public function show($user_name)
     {
-        $user = Auth::user();
-        if ($user) {
-            $user = User::with('profile')->find($user->id);
-        }
+        Helper::getDiscussTemplateRequire($user);
         $userpreview = User::where('name', $user_name)->with(['profile', 'profile.country'])->first();
         if (!$userpreview)
             abort(401);
@@ -75,25 +72,23 @@ class ProfileController extends Controller
 
     public function edit($user_name)
     {
-        $userpreview = User::with(['profile.country'])->where('name', $user_name)->first();
-        $user = Auth::user();
+        Helper::getDiscussTemplateRequire($user,$channels);
+        $userpreview = User::where('name',$user_name)->first;
         if (!$user || !$userpreview || $user->id != $userpreview->id)
             abort(401);
-        $user= User::with('profile')->find($user->id);
         $countries_data = Helper::getCountries();
         $countries = [];
         foreach ($countries_data as $country) {
             $countries[$country->id] = $country->name;
         }
-        return view('forum::'.config('laraforum.template').'.profile.edit')->with(['user' => $user, 'countries' => $countries, 'userpreview' => $userpreview]);
+        return view('forum::'.config('laraforum.template').'.profile.edit',compact([
+            'user','countries','userpreview','channels'
+        ]));
     }
 
     public function update(UpdateProfileRequest $request, $user_name)
     {
-        $user = Auth::user();
-        if ($user) {
-            $user = User::with('profile')->find($user->id);
-        }
+        Helper::getDiscussTemplateRequire($user);
         $user_update = User::where('name', $user_name)->with(['profile'])->first();
         if (!$user_update || !$user || $user_update->id != $user->id)
             abort(401);

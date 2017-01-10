@@ -43,7 +43,7 @@ class ChannelController extends Controller
 
     public function edit($channel_id)
     {
-        $channels = Helper::getChannels();
+        Helper::getDiscussTemplateRequire($user, $channels);
         $channel = $channels->where('id', $channel_id)->first();
         if (!$channel)
             abort(404);
@@ -58,7 +58,7 @@ class ChannelController extends Controller
             $channel->managers_list = '';
         }
         $channel_editing = $channel;
-        Helper::getDiscussTemplateRequire($user, $channels);
+
         $colors = Helper::getColorsLibrary();
         return view('forum::' . config('laraforum.template') . '.channel.edit', compact(['channel_editing', 'user', 'channels', 'colors']));
     }

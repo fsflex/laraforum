@@ -27,8 +27,9 @@ class Helper
 
     public static function getDiscussTemplateRequire(&$user = -1, &$channels = -1)
     {
+        Helper::autoloadUsersProfile();
         if ($user !== -1)
-            $user = (Auth::check()) ? User::with('profile')->find(Auth::user()->id) : null;
+            $user = (Auth::check()) ? Helper::getUser(Auth::user()->id) : null;
         if ($channels !== -1)
             $channels = Helper::getChannels();
         return 1;
@@ -47,11 +48,13 @@ class Helper
 
     public static function autoloadUsersProfile()
     {
+        if (DB::table('users')->count() === DB::table('profiles')->count())
+            return 1;
         $countries = Helper::getCountries();
         $basic_country_id = $countries->where('short_name', 'us')->first()->id;
         $users_id_has_profile = DB::table('profiles')->select('user_id')->get();
         $users_id_has_profile = ($users_id_has_profile->count()) ? $users_id_has_profile->pluck('user_id') : [];
-        $users_id_need_profile = DB::table('users')->select('id')->whereNotIn($users_id_has_profile)->get();
+        $users_id_need_profile = DB::table('users')->select('id')->whereNotIn('id',$users_id_has_profile)->get();
         if (!$users_id_need_profile->count())
             return 1;
         $data = [];
