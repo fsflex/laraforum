@@ -1,4 +1,4 @@
-@extends('forum::discuss.layouts.app')
+@extends(\FsFlex\LaraForum\Helpers\Helper::loadView('layouts.app'))
 @section('content')
     <section class="hero is-desktop is-primary is-bold pb-0-desktop">
         <div class="hero-body">

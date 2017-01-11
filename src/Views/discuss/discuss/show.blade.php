@@ -1,4 +1,4 @@
-@extends('forum::discuss.layouts.app')
+@extends(\FsFlex\LaraForum\Helpers\Helper::loadView('layouts.app'))
 @if(isset($header))
 @section('title')
     {{$header['title']}}
@@ -11,7 +11,7 @@
     <div class="section">
         <div class="container filterable">
             <div class="columns">
-                @include('forum::discuss.layouts.nomal_leftbar')
+                @include(\FsFlex\LaraForum\Helpers\Helper::loadView('layouts.nomal_leftbar'))
                 <div class="column is-9 primary">
                     <h1 class="title is-normal is-3 mbb-1">
                         {{$thread->title}}

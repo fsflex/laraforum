@@ -67,7 +67,7 @@ class ProfileController extends Controller
         }
         $contents = collect($contents);
         //dd($userpreview);
-        return view('forum::'.config('laraforum.template').'.profile.show')->with(['user' => $user, 'userpreview' => $userpreview, 'contents' => $contents]);
+        return view(Helper::loadView('profile.show'))->with(['user' => $user, 'userpreview' => $userpreview, 'contents' => $contents]);
     }
 
     public function edit($user_name)
@@ -81,7 +81,7 @@ class ProfileController extends Controller
         foreach ($countries_data as $country) {
             $countries[$country->id] = $country->name;
         }
-        return view('forum::'.config('laraforum.template').'.profile.edit',compact([
+        return view(Helper::loadView('profile.edit'),compact([
             'user','countries','userpreview','channels'
         ]));
     }

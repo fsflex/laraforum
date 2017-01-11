@@ -1,4 +1,4 @@
-@extends('forum::discuss.layouts.app')
+@extends(\FsFlex\LaraForum\Helpers\Helper::loadView('layouts.app'))
 @section('content')
     <div class="section is-normal">
         <div class="container">

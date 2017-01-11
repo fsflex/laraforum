@@ -10,9 +10,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use FsFlex\LaraForum\Models\Channel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\View;
 
 class Helper
 {
+    public static function loadView($view)
+    {
+        if(View::exists('laraforum.'.config('laraforum.template').'.'.$view))
+            return 'laraforum.'.config('laraforum.template').'.'.$view;
+        if(View::exists('forum::'.config('laraforum.template').'.'.$view))
+            return 'forum::'.config('laraforum.template').'.'.$view;
+        return 'forum::discuss.'.$view;
+    }
     public static function isAdmin($user)
     {
 

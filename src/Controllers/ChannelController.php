@@ -38,7 +38,7 @@ class ChannelController extends Controller
             abort(401);
         Helper::getDiscussTemplateRequire($user, $channels);
         $colors = Helper::getColorsLibrary();
-        return view('forum::' . config('laraforum.template') . '.channel.create', compact(['user', 'channels', 'colors']));
+        return view(Helper::loadView('channel.create'), compact(['user', 'channels', 'colors']));
     }
 
     public function edit($channel_id)
@@ -60,7 +60,7 @@ class ChannelController extends Controller
         $channel_editing = $channel;
 
         $colors = Helper::getColorsLibrary();
-        return view('forum::' . config('laraforum.template') . '.channel.edit', compact(['channel_editing', 'user', 'channels', 'colors']));
+        return view( Helper::loadView('channel.edit'), compact(['channel_editing', 'user', 'channels', 'colors']));
     }
 
     public function update(Request $request, $channel_id)
@@ -104,7 +104,7 @@ class ChannelController extends Controller
             abort(404);
         $channel_removing = $channel;
         $channels_to_keep = $channels->where('id', '<>', $channel->id);
-        return view('forum::' . config('laraforum.template') . '.channel.remove', compact(['channels_to_keep', 'channel_removing', 'user', 'channels']));
+        return view(Helper::loadView('channel.remove'), compact(['channels_to_keep', 'channel_removing', 'user', 'channels']));
     }
 
     public function destroy(Request $request, $channel_id)

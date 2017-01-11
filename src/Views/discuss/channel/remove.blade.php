@@ -1,9 +1,9 @@
-@extends('forum::discuss.layouts.app')
+@extends(\FsFlex\LaraForum\Helpers\Helper::loadView('layouts.app'))
 @section('content')
     <div class="section">
         <div class="container filterable">
             <div class="columns">
-                @include('forum::discuss.layouts.nomal_leftbar')
+                @include(\FsFlex\LaraForum\Helpers\Helper::loadView('layouts.nomal_leftbar'))
                 <div class="column is-9 primary">
 
                     <div class="box">

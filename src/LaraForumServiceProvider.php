@@ -21,7 +21,9 @@ class LaraForumServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/resources/config/laraforum.php' => config_path('laraforum.php')
         ], 'config');
-
+        $this->publishes([
+            __DIR__.'/Views' => resource_path('views/laraforum'),'views'
+        ]);
     }
 
     /**
