@@ -1,5 +1,4 @@
 @extends(\FsFlex\LaraForum\Helpers\Helper::loadView('layouts.app'))
-@extends(\FsFlex\LaraForum\Helpers\Helper::loadView('layouts.app'))
 @section('content')
     <div class="section">
         <div class="container filterable">
