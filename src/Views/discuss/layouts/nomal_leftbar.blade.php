@@ -1,6 +1,6 @@
 <aside class="forum-sidebar menu column is-3">
     @if($user)
-        <a href="{{route('discuss.create')}}" class="button is-default is-primary w-100 mb-1">
+        <a href="{{route('discuss.create',['channel'=>(Request::has('channel'))?Request::input('channel'):''])}}" class="button is-default is-primary w-100 mb-1">
             New Discussion
         </a>
     @endif

@@ -328,15 +328,17 @@ class DiscussController extends Controller
         return redirect()->route('discuss.show', [$thread->channel->name, $thread->slug]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         Helper::getDiscussTemplateRequire($user, $channels);
+        $channel_selected = ($request->has('channel')) ? $channels->where('name', $request->input('channel'))->first() : '';
+        $channel_selected = ($channel_selected) ? $channel_selected->id : 0;
         $channels_select = [];
         $channels_select[0] = 'Pick a Channel...';
         foreach ($channels as $channel) {
             $channels_select[$channel->id] = title_case($channel->name);
         }
-        return view('forum::' . config('laraforum.template') . '.discuss.create', compact(['channels_select', 'user', 'channels']));
+        return view('forum::' . config('laraforum.template') . '.discuss.create', compact(['channel_selected', 'channels_select', 'user', 'channels']));
     }
 
     public function setBestAnswer($thread_id, $post_id)

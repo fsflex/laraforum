@@ -52,7 +52,7 @@ class PostController extends Controller
             ->where('user_id',$user_id)
             ->first();
         $limit_time = config('laraforum.posts_interval');//second
-        if (!($last_created))
+        if (!($last_created->time))
             return 0;
         if ($time = Carbon::now()->diffInSeconds(new Carbon($last_created->time)) >= $limit_time)
             return 0;

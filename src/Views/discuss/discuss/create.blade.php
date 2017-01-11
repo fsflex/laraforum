@@ -11,7 +11,7 @@
                         <div class="control">
                             <label for="channel" class="label">Pick a Channel:</label>
                             <span class="select">
-        {{Form::select('channel',$channels_select,0)}}
+        {{Form::select('channel',$channels_select,$channel_selected)}}
     </span>
 
 
