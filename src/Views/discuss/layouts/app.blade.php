@@ -31,7 +31,7 @@
             <div class="container">
                 <div class="nav-left dont-flex mr-2">
                     <a class="nav-item is-brand" href="{{route('discuss.index')}}">
-                        <font size="5">{{title_case( config('laraforum.pagename'))}}</font>
+                        <font size="5">{{config('laraforum.pagename')}}</font>
                     </a>
                 </div>
                 <div class="nav-center flex mr-2">
