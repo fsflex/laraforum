@@ -22,7 +22,7 @@ Here is an example configuration, with all the default settings shown:
     'pagename' => 'LaraForum',
     'basic_title' => 'title forum',
     'basic_description'=>'forum description',
-    'url_prefix' => 'laraforum',
+    'url_prefix' => 'laraforum', 
     'admin_username' => 'admin',
     'posts_interval' => 30,//seconds
     'threads_interval' => 300,//seconds
@@ -30,3 +30,7 @@ Here is an example configuration, with all the default settings shown:
     'posts_paginate' =>20,
 ];</pre></div>
 
+Url to forum home site
+<div class="highlight highlight-text-html-php"><pre>
+    Your laravel public /< url_prefix >/discuss
+</pre></div>
