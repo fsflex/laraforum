@@ -92,9 +92,9 @@
                                         </div>
                                         <div class="content">
                                             @if($thread->body_with_highlight)
-                                                {!! $thread->body_with_highlight !!}
+                                                {!! (strlen($thread->body_with_highlight)>255 ) ? substr($thread->body_with_highlight,0,255).' ...' : $thread->body_with_highlight !!}
                                             @else
-                                                {{$thread->body}}
+                                                {{(strlen($thread->body)>255 ) ? substr($thread->body,0,255).' ...' : $thread->body }}
                                             @endif
                                         </div>
                                     </div>

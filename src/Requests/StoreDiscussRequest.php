@@ -28,7 +28,7 @@ class StoreDiscussRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required|max:255',
+            'title'=>'required|max:255|unique:threads,title',
             'channel'=>'exists:channels,id',
             'body'=>'required|max:60000'
         ];
